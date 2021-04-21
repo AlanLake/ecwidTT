@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
 import Picture from "./Picture";
+import Logo from "./Logo"
 import { parsingFile, addingPic } from "../util/functions";
 
 export default function Main() {
@@ -28,7 +29,8 @@ export default function Main() {
 
   return (
     <div>
-      <div class='uploader'> 
+      <Logo/>
+      <div className='uploader'> 
         <input
           type="text"
           onKeyPress={(event) => addingPic(event, dispatch)}
