@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
 import Picture from "./Picture";
-import Logo from "./Logo"
+import Logo from "./Logo";
 import { parsingFile, addingPic } from "../util/functions";
 
 export default function Main() {
@@ -29,15 +29,23 @@ export default function Main() {
 
   return (
     <div>
-      <Logo/>
-      <div className='uploader'> 
+      <Logo />
+      <div className="uploader">
         <input
           type="text"
           onKeyPress={(event) => addingPic(event, dispatch)}
           placeholder="Paste an url"
           onChange={(event) => setValue(event.target.value)}
         />
-        <button onClick={() => dispatch({ type: "ADDPIC", value: value })}>
+        <button
+          onClick={function () {
+            if (value.match(/^https/)) {
+              dispatch({ type: "ADDPIC", value: value });
+            } else {
+              return;
+            }
+          }}
+        >
           Add picture
         </button>
         <input
